@@ -1,0 +1,56 @@
+%Ctvrty projekt do predmetu ITY 2013/2014
+%Autor: Lukas Pelanek
+%email: xpelan03@stud.fit.vutbr.cz
+
+
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[left=2cm, text={17cm, 24cm}, top=3cm]{geometry}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\myuv}[1]{\quotedblbase #1\textquotedblleft}
+
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+	\Huge
+ 	\textsc{Vysoké učení technické v~Brně\\
+ 		{\huge Fakulta informačních technologií}}\\
+ 		
+	\vspace{\stretch{0.382}}
+	\LARGE
+	 Typografie a publikování - 4. projekt\\ 
+	 	\textbf{{\huge Bibliografické citace}}
+	\vspace{\stretch{0.618}}
+\end{center}
+
+{\Large \today \hfill Lukáš Pelánek}
+\end{titlepage}
+
+
+\section*{Úvod} 
+Pod pojmem latex si většina lidí, kteří se o~tuto oblast nezajímají, představí něco zcela odlišeného. Nicméně mám na mysli profesionální typografický nástroj {\LaTeX} [latech]. Pomocí {\LaTeX}u můžeme vytvářet dokumenty ve velmi vysoké typografické kvalitě. Ačkoliv práce s~{\LaTeX}em je zprvu složitá a náročná, po určitém čase, když si práci s~tímto nástrojem osvojíte, budete mistři v~psaní dokumentů.
+
+\section*{Začínáme s~{\LaTeX}em}
+Práce s~{\LaTeX}em se od většiny typografických nástrojů liší především v~tom, že vše sázíte pomocí příkazů. Dalo by se s~nadsázkou říci, že se jedná o~takové \myuv{programování}. Pro začátečníky s~{\LaTeX}em vyšla celá řada kvalitních knih. Například \cite{latex_zacatecnici} nebo v~angličtině \cite{latex_guide}. Pokud nemáte zájem si kupovat nebo půjčovat knihu, můžete využít některý z~elektronických dokumentů \cite{tex} \cite{getting}. Zda-li vás typografie opravdu zajímá, neváhejte a objednejte si některý z~časopisů, ve kterých se nachází kvalitní články z~oblasti typografie \cite{typografia} \cite{typo2}. Nebo jestli-že vás zaujal některý ze starších dílů, můžete si jej rovněž objednat \cite{typo}.
+  
+\section*{Pokročilá práce s~{\LaTeX}em}
+Naučit se s~{\LaTeX}em není jednoduché a zabere to spoustu času, avšak pokud jste již v~používání {\LaTeX}u zběhlí, můžete v~{\LaTeX}u vypracovat třeba svoji bakalářskou nebo diplomovou práci\cite{bibtex} \cite{rozpoznavani}. Píšete-li například bakalářskou práci a nevíte jak správně citovat autory, tak můžete kouknout sem \cite{martinek}.
+
+\section*{Závěr}
+Jak jsem již zmínil. Naučit se v~{\LaTeX}u vyžaduje čas a píli, avšak odměnou za vaši vytrvalost budou dokumenty na velmi vysoké typografické úrovni a rychlost, se kterou dokážete tyto dokumenty vytvářet. Rozhodně se vyplatí si vyzkoušet pár dokumentů v~{\LaTeX}u vytvořit a třeba si tento typografický nástroj oblíbíte.
+
+\newpage	
+
+\bibliographystyle{czplain}
+\renewcommand{\refname}{Literatura}
+\bibliography{seznam}
+
+
+
+\end{document}
+
