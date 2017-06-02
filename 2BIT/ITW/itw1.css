@@ -1,0 +1,372 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#itwp1{
+    font-family: Arial, sans-serif;
+    color: black;
+    font-size: 11pt;
+    background-color: #d3d3d3;
+
+}
+.hidden{
+    display: none;
+}
+#page{
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 0;
+    margin-top: 0;
+    max-width: 1024px;
+}
+hr{
+    display: none;
+}
+#topmenu{
+    text-align: right;
+}
+#topmenu a{
+    text-decoration: none;
+    color: #000000;
+    text-transform: lowercase;
+    font-size: 12px;
+}
+.login{
+    position: absolute;
+    right: 37px;
+    bottom: 80px;
+}
+.login:after{
+    content: url("loginlink.png");
+    padding: 2px;
+    position: relative;
+    top: 1px;
+}
+#sitemap{
+    position: absolute;
+    right: 40px;
+    bottom: 55px;
+}
+#sitemap a:after{
+    content: url("loginlink.png");
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+#sitemap a{
+    text-decoration: none;
+    color: #000000;
+    text-transform: lowercase;
+    font-size: 12px;
+}
+#header{
+    background-color: #1e90ff;
+    background-image: url("head.png");
+    max-width: 1024px;
+    height: 120px;
+    margin: 0;
+    position: relative;
+}
+#header h1{
+    display: block;
+    background-image: url("logo.png");
+    width: 188px;
+    height: 71px;
+    position: absolute;
+    top: 20px;
+}
+#header h1 a{
+    display: block;
+    width: 188px;
+    height: 71px;
+    font-size: 0px;
+}
+#menubar{
+    display: block;
+    position: absolute;
+    text-align: right;
+    right: 40px;
+    bottom: 12px;
+}
+#menu{
+    list-style-type: none;
+}
+#menu li{
+    display: inline;
+    border-left: 1px solid #000000;
+}
+#menu li:first-child{
+    border-left: none;
+}
+#menu a{
+    text-decoration: none;
+    color: #000000;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.selected{
+    display: inline-block;
+}
+.selected a{
+    font-weight: bold;
+    position: relative;
+    left: 20px;
+}
+.selected:after{
+    content: url("sel.png");
+    position: relative;
+    top: 16px;
+    right: 20px;
+}
+#topimg{
+    background-image: url("topimg.jpg");
+    max-width: 1024px;
+    height: 350px;
+    position: relative;
+}
+.bg{
+    background-image: url("bgcont.jpg");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#feedback{
+    background-image: url("bgfback.png");
+    position: relative;
+    height: 25px;
+}
+#fpopup {
+    background: url("feedback_up.png");
+    bottom: 0;
+    height: 32px;
+    position: absolute;
+    right: 0;
+    width: 225px;
+}
+#fpopup a{
+    text-decoration: none;
+    color: #ffffff;
+    position: relative;
+    top: 11px;
+    left: 30px;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+.cont{
+    width: 500px;
+    height: 110px;
+    display: block;
+    position: absolute;
+    border: 1px grey solid;
+    right: 60px;
+    bottom: 52px;
+    background: rgba(0, 0, 0, 0.4);
+}
+.cont h2{
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 20pt;
+    text-shadow: 1px 1px 0px #666;
+}
+.cont h2 + p{
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 13pt;
+    text-shadow: 1px 1px 0px #666;
+}
+.more{
+    display: block;
+    width: 60px;
+    position: absolute;
+    top: 68px;
+    left: 435px;
+}
+.more a{
+    text-decoration: none;
+    color: #ffffff;
+    text-shadow: 1px 1px 0px #666;
+    font-weight: bold;
+    font-size: 12pt;
+}
+.more a:after{
+    content: url("moreb.png");
+    position: relative;
+    top: 8px;
+    left: 3px;
+}
+.more a:hover{
+    text-decoration: underline;
+    color: #ffffff;
+    text-shadow: 1px 1px 0px #666;
+    font-weight: bold;
+    font-size: 12pt;
+}
+#social{
+    position: absolute;
+    right: 120px;
+    bottom: 45px;
+}
+#social a{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+}
+.twitter{
+    background-image: url("i_twitter.png");
+    display: none;
+    font-size: 0px;
+}
+.fb{
+    background-image: url("i_fb.png");
+    display: none;
+    font-size: 0px;
+}
+.linkedin{
+    background-image: url("i_linkedin.png");
+    display: none;
+    font-size: 0px;
+}
+.maintext {
+    padding: 10px;
+    overflow: hidden;
+    padding-left: 40px;
+}
+.inner{
+    padding: 0 40px 0 30px;
+}
+#footer{
+    background-image: url("bgfootfull.jpg");
+    max-width: 1024px;
+    height: 19px;
+    color: #ffffff;
+    font-size: 9pt;
+}
+.menu{
+    list-style-type: none;
+    float: left;
+}
+.menu li{
+    display: inline-block;
+    border-left: 1px solid grey;
+    position: relative;
+    top: 3px;
+    right: 5px;
+}
+.menu li:first-child{
+    border-left: none;
+}
+.menu a{
+    text-decoration: none;
+    color: #ffffff;
+    padding: 5px;
+}
+.copy{
+    position: relative;
+    top: 3px;
+    text-align: right;
+}
+.col{
+    width: auto;
+    height: auto;
+}
+#news{
+    border: hidden;
+    width: 600px;
+    height: auto;
+    float: left;
+    margin-right: 30px;
+    margin-top: 10px;
+}
+.abox{
+     overflow: hidden;
+     width: 295px;
+     height: auto;
+     margin-top: 15px;
+    padding-top: 50px;
+     border-top: solid 1px grey;
+ }
+.abox:last-child{
+    padding-bottom: 20px;
+}
+#rightcol h4{
+    position: relative;
+    bottom: 15px;
+}
+#news  a{
+    text-decoration: underline;
+    color: #000000;
+    font-size: 15pt;
+    font-weight: normal;
+}
+#news  h4{
+    padding-top: 17px;
+    border-top: solid 1px grey;
+}
+#news p{
+    display: block;
+    padding-bottom: 12px;
+}
+#news p:last-child{
+    padding-bottom: 50px;
+}
+#news h3+h4{
+    border-top: none;
+}
+#rightcol{
+    display: block;
+    max-width: 295px;
+    float: left;
+    position: relative;
+}
+.abox a{
+    display: block;
+    background-image: url("thumb_didyou.png");
+    max-width: 280px;
+    height: 189px;
+    position: relative;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 10pt;
+}
+.abox .link{
+    font-weight: bold;
+    position: absolute;
+    left: 225px;
+}
+.abox .link:after{
+    content: url("mores.png");
+    position: relative;
+    top: 6px;
+    left: 2px;
+}
+.abox q{
+    position: absolute;
+    top: 40px;
+    left: 17px;
+}
+.abox q:before{
+    content: url("quotl.png");
+    position: relative;
+    padding-right: 10px;
+    left: 5px;
+}
+.abox q:after{
+    content: url("quotr.png");
+    position: relative;
+    padding-left: 5px;
+    top: 3px;
+}
+.sgn{
+    font-weight: bold;
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+}
