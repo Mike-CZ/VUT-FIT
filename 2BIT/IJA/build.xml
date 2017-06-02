@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+ 
+  <target name="compile">
+    <delete dir="build"/>
+    <delete dir="dest-client"/>
+    <mkdir dir="build/classes/Labyrinth"/>
+    <mkdir dir="dest-client"/>
+    <javac srcdir="src/Labyrinth" destdir="build/classes/" includeAntRuntime="false"/>
+    <jar destfile="dest-client/ija2015-client.jar" basedir="build/classes">
+      <manifest>
+         <attribute name="Main-Class" value="Labyrinth.Main"/>                    
+       </manifest>
+    </jar>
+    <copy todir="dest-client/lib">
+      <fileset dir="lib"/>
+    </copy>
+    <delete dir="doc"/>
+    <mkdir dir="doc"/>
+    <javadoc
+          access="public"
+           destdir="doc"
+           author="true"
+           version="true"
+           use="true"
+           windowtitle="ija2015 xpelan03 xkomar27"
+       >
+        <fileset dir="src" defaultexcludes="yes">
+            <include name="**/*.java"/>
+        </fileset>
+    </javadoc>
+  </target>
+ 
+  
+
+  <target name="run">
+    <java jar="dest-client/ija2015-client.jar" fork="true"/>
+  </target>
+ 
+</project>
+ 
