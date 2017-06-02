@@ -1,0 +1,5 @@
+chyba=10.7612
+mean_no_hist=159.9056
+std_no_hist=64.6461
+mean_hist=159.2609
+std_hist=65.3274
