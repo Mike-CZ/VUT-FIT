@@ -1,0 +1,192 @@
+#!/usr/bin/env python3
+
+# Autor: Lukas Pelanek, xpelan03@stud.fit.vutbr.cz
+ 
+import sys
+import getopt
+import signal
+import os
+import time
+import datetime
+import socket
+import random
+
+maxChunk = ""       # maxmimalni velikost dat v chunku
+minChunk = ""       # minimalni cas cekani pred odeslanim dalsiho chunku
+port = ""           # port na kterym serverm nasloucha
+host = ""
+
+file = "./www"
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)             # vytvoreni socketu
+
+# ziskani casu
+stamp = time.time()
+
+# vytvoreni logovacich souboru pomoci casoveho razitka
+inLogFile = "ipkHttpServer-" + datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d:%H:%M:%S') + ".in.log"
+outLogFile = "ipkHttpServer-" + datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d:%H:%M:%S') + ".out.log"
+
+# handler pro sigint
+def handler(signum, frame):
+    # uzavreme socket a ukoncime program
+    s.close() 
+    exit(0)
+
+def getChunks(body, size):
+    size = max(1, size)
+    return [body[i:i + size] for i in range(0, len(body), size)]
+
+#napoveda
+def printHelp():
+    print("Autor:\t Lukas Pelanek")
+    print("E-mail:\t xpelan03@stud.fit.vutbr.cz")
+    print("Popis:\t HTTP klient\n")
+    print("-h\t Zobrazeni napovedy")
+    print("-c\t Zapne chunked-encoding, vyzaduje velikost chunku")
+    print("-t\t Minimalni doba pred odeslanim dalsiho chunku, pouze s -c")
+
+signal.signal(signal.SIGINT, handler)
+
+try:
+    options, args = getopt.getopt(sys.argv[1:], "hc:p:t:")
+except getopt.GetoptError:
+    print("chyba pri zpracovani parametru")
+    sys.exit(1)
+        
+for opt, arg in options:
+    if opt == "-h":
+        if (len(sys.argv) != 2):
+            print("parametr -h musi byt zadan samostatne")
+            exit(1)
+        printHelp()
+        exit(0)
+    if opt == "-c":
+        if len(maxChunk):
+            print("vicenasobne zadani parametru -c")
+            exit(1)
+        maxChunk = arg
+    if opt == "-p":
+        if len(port):
+            print("vicenasobne zadani parametru -p")
+            exit(1)
+        port = arg
+    if opt == "-t":
+        if len(minChunk):
+            print("vicenasobne zadani parametru -t")
+            exit(1)
+        minChunk = arg       
+
+if len(minChunk) and not len(maxChunk):
+    print("prepinac -t musi byt v kombinaci s -c")
+    exit(1)
+
+# pokud neni zadan port, spustime server na portu 80
+if not len(port):
+    port = 80
+    
+# pokud neni nastavena hodnota minimalniho casu pred odeslanim dalsiho chunku, nastavim 0
+if not len(minChunk):
+    minChunk = 0
+
+# pokusim se otevrit soubor pro zapis prichozi komunikace    
+try:
+    inFile = open(inLogFile, "w", encoding="utf-8")
+except:
+    print("Nepodarilo se otevrit logovaci soubor")
+    exit(1)
+
+# pokusim se otevrit soubor pro zapis odchozi komunikace
+try:
+    outFile = open(outLogFile, "w", encoding="utf-8")
+except:
+    print("Nepodarilo se otevrit logovaci soubor")
+    exit(1)
+ 
+# pokusim se otevrit socket    
+try:
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind((host, int(port)))
+except:
+    print("nepodarilo se otevrit socket na portu ", port)
+    inFile.close()
+    outFile.close()
+    exit(1)    
+
+s.listen(1)                     # cekani na pripojeni klienta
+
+# hlavni smycka programu
+while True:
+    c, addr = s.accept()        # navazani spojeni s klientem
+    request = c.recv(1024).decode("utf-8")
+    inFile.write(request)
+       
+    #rozparsuji hlavicku na jednotlive casti
+    request = request.split("\r\n")
+    
+    # ziskame nazev pozadovaneho souboru
+    file += request[0].split(" ")[1]
+    
+    
+    try:
+        readFile = open(file, "r", encoding="ISO-8859-2")
+    except:
+        # pokud osubor neexistuje, odeslu chybove hlaseni, uzavru spojeni a cekam na dalsi pozadavek
+        response = "HTTP/1.1 404 Not Found\r\n\r\nFile not found!\r\n\r\n"
+        outFile.write(response)
+        c.sendall(response.encode("ISO-8859-2"))
+        c.close()
+        file = "./www"
+        continue
+    
+    # ziskam velikost souboru
+    fileSize = os.path.getsize(file)
+    file = "./www"
+    
+    # nactu obsah do pameti a uzavru soubor
+    content = readFile.read()
+    readFile.close()
+    
+    # vytvoreni zpravy 
+    response = "HTTP/1.1 200 OK\r\n"
+    response += "Content-Type: text/plain\r\n"
+        
+    # pokud nebyl zadan prepinac zpracujici chunky, posilam vse najednou
+    if not len(maxChunk):
+        response += "Content-Length: " + str(fileSize) + "\r\n"
+        response += "Connection: close\r\n"
+        response += "\r\n"    
+        response += content
+        outFile.write(response + "\r\n\r\n")        # pridam do vypisu odradkovani
+        c.sendall(response.encode("ISO-8859-2"))  
+    # jinak posilam v chuncich  
+    else:
+        response += "Transfer-Encoding: chunked\r\n"
+        response += "Connection: keep-alive\r\n" 
+        response += "\r\n"
+        outFile.write(response)
+        c.sendall(response.encode("ISO-8859-2")) 
+        
+        # rozdelim zpravu na jednotlive chunky
+        content = getChunks(content, int(maxChunk))
+        
+        # odeslu zpravu po jednotlivych chuncich
+        for chunk in content:
+            response = hex(len(chunk))[2:] + "\r\n"
+            response += chunk + "\r\n"
+            outFile.write(response)
+            c.sendall(response.encode("ISO-8859-2"))
+            
+            # doba pred odeslanim dalsiho chunku, vygeneruji nahodnou hodnotu z intervalu <min-chunk-time, max-chunk-time>
+            if int(minChunk) > 0:
+                time.sleep(random.randrange(int(minChunk),(int(minChunk)*2)+1) / 1000.0)
+                 
+            
+        response = "0\r\n\r\n"
+        outFile.write(response)
+        c.sendall(response.encode("ISO-8859-2"))
+        
+    c.close()
+s.close()
+
+

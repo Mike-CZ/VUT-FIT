@@ -1,0 +1,27 @@
+Popis implementace druheho projektu do predmetu IPK 2014/2015
+Autor: Lukas Pelanek, xpelan03@stud.fit.vutbr.cz
+Jazyk: Python 3
+
+Client:
+
+Client povinne vyzaduje parametr URI. Dale je mozne zavolat napovedu pomoci parametru -h. Tento parametr nelze s zadnym jinym kombinovat.
+Pro ucely testovani jsem implementoval i parametr -d, ktery na stdout tiskne hlavicku jednotlivych odpovedi od serveru.
+Komunikace je logovana do souboru, presne jak je pozadovano v zadani projektu. Client by mel byt plne funkcni.
+
+Server:
+
+Server nema zadny povinny parametr. Volitelne lze zadat parametr -p, ktery urci na kterem portu server bezi. Defaultni hodnota je 80.
+Pokud je aktivni prepinac -c, aktivuje se chunked-transfer encoding. Parametr -t simuluje zatez na lince, ktery v milisekundach udava minimalni cas pred odeslanim dalsiho chunku.
+Parametr -t je povolen poze v kombinaci s parametrem -c. Defaultni hodnota je 0. Server rovnez podporuje parametr -h.
+Server zpristupni obsah adresare ./www.
+Komunikace je logovana do souboru, presne jak je pozadovano v zadani projektu. Server by mel byt plne funkcni.
+
+Priklady spusteni:
+
+./ipkhttpserver -p 8080 -c 40 -t 100
+- spusti server na portu 8080, zapne chunked-transfer encoding s delkou chunku 40 a minimalni doba pred odeslanim dalsiho chunku je 100ms
+
+./ipkhttpclient http://localhost:8080/soubor.txt
+- spusti clienta, ktery se pokusi pripojit na port 8080 a ziskat soubor.txt
+
+Rozsahlejsi priklady spusteni spolecne s komentarem naleznete v souboru test.sh

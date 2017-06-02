@@ -1,0 +1,181 @@
+#!/usr/bin/env python3
+ 
+# Autor: Lukas Pelanek, xpelan03@stud.fit.vutbr.cz
+ 
+import sys
+import socket
+import time
+import datetime
+from urllib.parse import urlparse
+
+URI = ""        # URI adresa
+port = ""       # port serveru
+
+# vypis na terminal
+debug = False
+
+netloc = ""
+chunks = False
+
+# ziskani casu
+stamp = time.time()
+
+# vytvoreni logovacich souboru pomoci casoveho razitka
+inLogFile = "ipkHttpClient-" + datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d:%H:%M:%S') + ".in.log"
+outLogFile = "ipkHttpClient-" + datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d:%H:%M:%S') + ".out.log"
+inHeader = "ipkResp-" + datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d:%H:%M:%S') + ".header"
+inBody = "ipkResp-" + datetime.datetime.fromtimestamp(stamp).strftime('%Y-%m-%d:%H:%M:%S') + ".payload"
+
+#napoveda
+def printHelp():
+    print("Autor:\t Lukas Pelanek")
+    print("E-mail:\t xpelan03@stud.fit.vutbr.cz")
+    print("Popis:\t HTTP klient\n")
+    print("-h\t Zobrazeni napovedy")
+    print("URI\t URI Adresa")
+
+# zpracovani parametru
+for arg in sys.argv[1:]:
+    if arg == "-h":
+        if (len(sys.argv) != 2):
+            print("parametr -h musi byt zadan samostatne")
+            exit(1)
+        printHelp()
+        exit(0)
+    elif arg == "-d":
+        debug = True
+    else:
+        if (len(sys.argv) != 2 and debug == False):
+            print("Zadejte pouze jednu URI adresu")
+            exit(1)
+        URI = arg
+        
+if not len(URI):
+    print("Nebyla zadana zadna URI adresa")
+    exit(1)     
+    
+# pokusim se otevrit soubor pro zapis prichozi komunikace    
+try:
+    inFile = open(inLogFile, "w", encoding="utf-8")
+except:
+    print("Nepodarilo se otevrit logovaci soubor")
+    exit(1)
+
+# pokusim se otevrit soubor pro zapis odchozi komunikace
+try:
+    outFile = open(outLogFile, "w", encoding="utf-8")
+except:
+    print("Nepodarilo se otevrit logovaci soubor")
+    exit(1)   
+
+# pokusim se otevrit soubor pro zapis prichozi komunikace    
+try:
+    headFile = open(inHeader, "w", encoding="utf-8")
+except:
+    print("Nepodarilo se otevrit logovaci soubor")
+    exit(1)
+
+# pokusim se otevrit soubor pro zapis odchozi komunikace
+try:
+    bodyFile = open(inBody, "w", encoding="utf-8")
+except:
+    print("Nepodarilo se otevrit logovaci soubor")
+    exit(1)
+
+# rozparsuji uri 
+o = urlparse(URI)
+
+# ziskani portu
+if len(o[1]):
+    netloc = o[1].split(":")
+    if (len(netloc)) > 1:
+        port = netloc[1]
+    else:
+        port = 80
+host = netloc[0]
+
+requestFile = o[2]
+if not len(requestFile):
+    requestFile = "/"
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)             # vytvoreni socketu
+# pokusim se pripojit
+try:
+    s.connect((host, int(port)))
+except:
+    print("Nepodarilo se pripojit k", host, "na portu", port)
+    exit(1)
+
+# vytvorim zpravu
+request = "GET " + str(requestFile) + " HTTP/1.1\r\n"
+request += "Host: " + str(host) + "\r\n"
+request += "\r\n"
+
+# odeslu pozadavek
+outFile.write(request)
+s.sendall(request.encode("ISO-8859-2"))
+
+respond = s.recv(1024).decode("ISO-8859-2")
+
+# zjistim vyskyt indexu prvniho vyskytu sekvence \r\n\r\n a rozdelim na hlavicku a telo
+index = respond.find("\r\n\r\n") + 4
+header = respond[:index]
+body = respond[index:]
+
+# musel jsem zpravu dekodovat na iso, protoze v utf pri chuncich se to rozpulilo v pulce znaku a nemohl jsem dekodovat
+convert = bytes(header.encode("ISO-8859-2"))
+header = convert.decode("utf-8")   
+
+if debug == True:
+    print(header)
+
+inFile.write(header)
+headFile.write(header)
+
+# rozdelim si zpravu na hlavicku a telo
+
+
+if header.find("Transfer-Encoding: chunked") != -1:
+    chunks = True
+    
+# pokud prislo nejake telo, tak jej zpracujeme    
+if len(body):    
+    if chunks:
+        if body.find("0\r\n\r\n") == -1:  
+            chunkedMessage = bytes()
+            while True:
+                respond = s.recv(1024)
+                chunkedMessage += respond
+                if respond.decode("ISO-8859-2").find("0\r\n\r\n") != -1:
+                    break
+            inFile.write(body + chunkedMessage.decode("ISO-8859-2"))
+            chunkedMessage = body + chunkedMessage.decode("ISO-8859-2")
+            # dekodujeme zpravu
+            decodedRespond = ""
+            # dekodovani zpravy
+            while chunkedMessage != "":
+                index = chunkedMessage.find("\r\n")
+                length = int(chunkedMessage[:index],16) 
+
+                if length == 0:
+                    break
+                chunkedMessage = chunkedMessage[index+2:]
+                decodedRespond += chunkedMessage[:length]
+                chunkedMessage = chunkedMessage[length+2:]
+            
+            # dekoduji zpet na utf
+            convert = bytes(decodedRespond.encode("ISO-8859-2"))
+            decodedRespond = convert.decode("utf-8")   
+            bodyFile.write(decodedRespond)
+            
+        else:
+            print("nevim")
+    
+    else:
+        inFile.write(body)
+        bodyFile.write(body)
+
+
+s.close
+
+
