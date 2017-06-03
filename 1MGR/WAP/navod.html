@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="cs">
+    <meta charset="UTF-8">
+    <title>xpelan03 - navod</title>
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            padding: 30px 60px;;
+        }
+        p {
+            padding: 10px 0;
+        }
+        .code {
+            display: block;
+            font-family: monospace;
+            background-color: lightgrey;
+            white-space: pre;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Správce oken</h2>
+<p>Lukáš Pelánek, <a href="mailto:xpelan03@stud.fit.vutbr.cz">xpelan03@stud.fit.vutbr.cz</a></p>
+
+<h2>Popis</h2>
+<p>Funkce v javascriptu, která vyhledá v HTML dokumentu div elementy s třídou <strong>desktop</strong> a následně takové
+    prvky zobrazí jako ohraničenou oblast stránky. Dále v této oblasti vyhledá libovolný počet elementů div s třídou
+    <strong>window</strong>. Tyto elementy zobrazí jako okna přesouvatelná v této oblasti. Oknu je přidělen titulek s
+    ikonami. Tato okna lze tažením v rámci dané oblasti přesouvat, měnit velikost okna myší, zvětšit na celou oblast a
+    zmenšit zpět na původní rozměr.</p>
+
+<h2>Návod k použití</h2>
+<p>Nejprve připojte script do stránky:</p>
+<p class="code">&lt;type="text/javascript" src="script.js"&gt;&lt;/script&gt;</p>
+<p>Následně vytvořte ve stránce plochy (elementy div s třídou <strong>desktop</strong>) a do nich vložte požadovaná okna
+    (elementy div s třídou <strong>window</strong>). Pokud si přejete zvolit titulek okna, tak jej vložte jako atribut
+    <strong>id</strong>. Ukázkový příklad jak by to mohlo vypadat:</p>
+<p class="code">&lt;div class="desktop"&gt;
+    &lt;div class="window"&gt;
+        Nejaky obsah okna
+    &lt;/div&gt;
+    &lt;div class="window" id="Nazev okna"&gt;
+        Jiny obsah okna
+    &lt;/div&gt;
+&lt;/div&gt;
+</p>
+<p>Nakonec zavolejte na konci stránky funkci <strong>runWindowManager()</strong>, která script spustí.</p>
+<p class="code">&lt;script&gt;
+    runWindowManager();
+&lt;/script&gt;</p>
+<p>Okna lze přesouvat tažením za titulek okna. Měnit velikost tažením rohu okna. Zvětšení na celou plochu dvojím kliknutím
+na titulek nebo kliknutím na ikonu režimu celého okna. Zavřít okno kliknutím na ikonu pro zavření.</p>
+</body>
+</html>

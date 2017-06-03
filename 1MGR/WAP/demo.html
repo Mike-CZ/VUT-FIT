@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="cs">
+    <meta charset="UTF-8">
+    <title>Správce oken - xpelan03</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="script.js"></script>
+
+    <style type="text/css">
+        #plocha1 {
+            height: 400px;
+            background-color: lightblue;
+        }
+        #plocha2 {
+            height: 300px;;
+            background-color: lightyellow;
+        }
+        #Nazev {
+            top: 100px;
+            left: 300px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="desktop" id="plocha1">
+    <div class="window">
+        Okno bez prideleneho nadpisu.
+    </div>
+    <div class="window" id="Nazev">
+        Toto okno ma nadpis "Nazev", protoze je zadano ID.
+    </div>
+</div>
+
+<div class="desktop" id="plocha2">
+    <div class="window">
+        Samostatne okno uvnitr plochy.
+    </div>
+</div>
+
+</body>
+
+<script>
+    runWindowManager();
+</script>
+
+</html>
