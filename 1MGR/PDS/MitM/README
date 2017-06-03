@@ -1,0 +1,61 @@
+/*
+* Soubor:  readme.txt
+* Datum:   2017/4/20
+* Autor:   Bc. Lukas Pelanek, xpelan03@stud.fit.vutbr.cz
+* Projekt: PDS, Man in the Middle
+*/
+
+Aplikace byla vytvorena jako skolni projekt do predmetu PDS v roce 2017. Aplikace realizuje
+sitovy utok Man in the Middle nad ipv4 i ipv6 provozem.
+
+Preklad: preklad aplikace je proveden pomoci prilozeneho Makefile prikazem "make".
+
+Scanner:
+	./pds-scanner -i interface -f file
+
+		-interface (řetězec) specifikuje jméno rozhraní dle OS, na kterém skenování proběhne
+		-file (cesta) určuje soubor s nalezenými zařízeními
+----------------
+
+Spoofer:
+	./pds-spoof -i interface -t sec -p protocol -victim1ip ipaddress -victim1mac macaddress -victim2ip ipaddress -victim2mac macaddress 
+
+		-interface (řetězec) specifikuje rozhraní, na kterém spoofing proběhne
+		-sec (celé číslo) určuje interval v sekundách, ve kterém dochází k opakovanému odesílání ARP/NDP zpráv způsobující otravu cache
+		-protocol (řetězec) může nabývat jen dvou hodnot a to arp" a ndp" určuje, jestli se k otravě cachí obětí použije protokol ARP či NDP
+		-ipaddress je buď IPv4 (v dotted-decimal formátu) či IPv6 adresa (ve formátu kompatibilním s RFC5952) oběti
+		-macaddress je MAC adresa oběti
+----------------
+
+Intercepter:
+	./pds-intercept -i interface -f file
+
+		-interface (řetězec) specifikuje rozhraní, na kterém přeposílání provozu proběhne
+		-file (cesta) je obohacený XML soubor s dvojicemi obětí
+
+	Poviný formát vstupního XML souboru:
+		<?xml version="1.0"?>
+		<!DOCTYPE devices [
+		<!ELEMENT devices (host+)>
+		<!ELEMENT host (ipv4,ipv6)>
+		<!ELEMENT ipv4 (#PCDATA)>
+		<!ELEMENT ipv6 (#PCDATA)>
+		<!ATTLIST host mac CDATA #REQUIRED>
+		<!ATTLIST host group CDATA #REQUIRED>
+		]>
+----------------
+BONUS: Chooser
+	./pds-chooser -f input -o output
+
+		-input (cesta) určuje vstupní XML soubor s nalezenými zařízeními;
+		-output (cesta) určuje výstupní XML soubor obohacený o vybrané oběti.
+
+	Poviný formát vstupního XML souboru:
+		<?xml version="1.0"?>
+		<!DOCTYPE devices [
+		<!ELEMENT devices (host+)>
+		<!ELEMENT host (ipv4,ipv6)>
+		<!ELEMENT ipv4 (#PCDATA)>
+		<!ELEMENT ipv6 (#PCDATA)>
+		<!ATTLIST host mac CDATA #REQUIRED>
+		]>
