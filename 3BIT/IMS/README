@@ -1,0 +1,35 @@
+Simulator cislicovych systemu
+Hodnoceni:17/20 (Body strzeny za dokumentaci)
+
+Navod na spusteni:
+
+Program je nutne prelozit pomoci prikazu "make" (pomoci prilozeneho souboru Makefile).
+Program vyzaduje dva vstupni parametry, prvni je nazev vstupni topologie, druhy nazev vystupniho obrazku ve formatu png
+Spusteni: ./ims "vstupni_soubor" "vystupni_soubor.png"
+Vygeneruji se dva soubory, "data.dat" obsahujici data a soubor "script.gp", pomoci ktereho gnuplot vygeneruje vystupni graf
+Generovani grafu: gnuplot script.gp
+Vystupem je graf ve formatu png, ktery byl zadan jako druhy parametr programu
+
+nebo pomoci Makefile:
+Program musi byt prvne prelozen pomoci prikazu "make".
+Prikaz "make run" vygeneruje ukazkovy priklad.
+Prikaz "make sekvencni" vygeneruje sekvencni obvod
+Prikaz "make kombinacni" vygeneruje kombinacni obvod
+Pro spusteni vlastni topologie: "make run input=VSTUPNI_SOUBOR output=VYSTUPNI_SOUBOR.png"
+
+Vstupni topologie je zadana formou jednoducheho netlistu. Pomoci cisel pinu se komponenty propoji dohromady.
+Kazda komponenta ma ruzny pocet pinu, v seznamu jdou piny vzdy postupne, pokud komponenta jiz dalsi pin neobsahuje, zapise se 0
+Zacina se vstupnimi piny.
+
+Ukazkova topologie:
+CLK 1 0 0
+CLK 2 0 0
+NOT 1 3 0
+NAND 3 5 4
+NAND 2 4 5
+
+Dostupne komponenty: IN, CLK, NOT, AND, OR, NAND, NOR
+
+Komponenty IN a CLK obsahuji jeden vystupni pin.
+Komponenta NOT obsahuje pouze jeden vstupni a jeden vystupni pin.
+Komponenty AND, OR, NAND a NOR obsahuji dva vstupni a jeden vystupni pin

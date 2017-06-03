@@ -1,0 +1,5 @@
+IN 1 0 0
+CLK 2 0 0
+AND 1 2 3
+NAND 3 2 4
+NOT 4 5 0
