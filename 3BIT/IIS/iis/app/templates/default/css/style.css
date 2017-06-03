@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+header, section, footer, aside, nav, main, article, figure {
+    display: block;
+}
+body{
+    position: relative;
+    background: rgba(97,71,153,0.69);
+    /*background: -moz-linear-gradient(-45deg, rgba(97,71,153,0.69) 0%, rgba(97,71,153,0.77) 17%, rgba(97,71,153,0.84) 33%, rgba(97,71,153,0.86) 50%, rgba(97,71,153,0.85) 65%, rgba(97,71,153,0.77) 84%, rgba(97,71,153,0.71) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(97,71,153,0.69)), color-stop(17%, rgba(97,71,153,0.77)), color-stop(33%, rgba(97,71,153,0.84)), color-stop(50%, rgba(97,71,153,0.86)), color-stop(65%, rgba(97,71,153,0.85)), color-stop(84%, rgba(97,71,153,0.77)), color-stop(100%, rgba(97,71,153,0.71)));
+    background: -webkit-linear-gradient(-45deg, rgba(97,71,153,0.69) 0%, rgba(97,71,153,0.77) 17%, rgba(97,71,153,0.84) 33%, rgba(97,71,153,0.86) 50%, rgba(97,71,153,0.85) 65%, rgba(97,71,153,0.77) 84%, rgba(97,71,153,0.71) 100%);
+    background: -o-linear-gradient(-45deg, rgba(97,71,153,0.69) 0%, rgba(97,71,153,0.77) 17%, rgba(97,71,153,0.84) 33%, rgba(97,71,153,0.86) 50%, rgba(97,71,153,0.85) 65%, rgba(97,71,153,0.77) 84%, rgba(97,71,153,0.71) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(97,71,153,0.69) 0%, rgba(97,71,153,0.77) 17%, rgba(97,71,153,0.84) 33%, rgba(97,71,153,0.86) 50%, rgba(97,71,153,0.85) 65%, rgba(97,71,153,0.77) 84%, rgba(97,71,153,0.71) 100%);
+    background: linear-gradient(135deg, rgba(97,71,153,0.69) 0%, rgba(97,71,153,0.77) 17%, rgba(97,71,153,0.84) 33%, rgba(97,71,153,0.86) 50%, rgba(97,71,153,0.85) 65%, rgba(97,71,153,0.77) 84%, rgba(97,71,153,0.71) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#55226d', endColorstr='#55226d', GradientType=1 );*/
+    font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.main-wrapper{
+    width: 1024px;
+    color: #000000;
+    margin: 0 auto;
+}
+.page-header {
+    padding: 5px;
+}
+
+.content{
+    margin-top: 30px;
+    width: 100%;
+    background: rgba(97,71,153,0.69);
+}
+
+.logo{
+    background: url("/images/logo.png") no-repeat center;
+    background-size: contain;
+    z-index: 11;
+    width: 20%;
+    height: 10%;
+    margin: 20px;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #330066;
+}
+
+.main-menu{
+    margin: 15px 0;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    font-weight: bold;
+    background-color: #330066;
+}
+.main-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+.main-menu a:hover {
+    color: #436CF2;
+}
+
+.main-menu li{
+    display: inline-block;
+    line-height: 30px;
+    padding: 0 10px;
+}
+
+.align-center{
+    text-align: center;
+}
+
+table td {
+    padding-right: 5px;
+}
+
+.float-left{
+    float: left;
+}
+.float-right{
+    float: right;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.admin-menu{
+    margin: 0 20px;
+}
+
+.admin-menu p{
+    padding: 2px 0;
+}
+
+.error{
+    color: #ff0000;
+    padding: 3px;
+}
+
+#flights-table {
+    margin: 0 auto;
+    font-size: 1em;
+    border-spacing: 0;
+    text-align: left;
+}
+
+#flights-table thead {
+    padding: 2px;
+    background-color: #330066;
+}
+
+#flights-table th{
+    cursor: pointer;
+    color: #ffffff;
+    padding-right: 10px;
+}
+#flights-table th:last-child{
+    padding: 0;
+}
+#flights-table td {
+    padding-right: 10px;
+}
+
+.subcontent {
+    padding: 0 10px 15px;
+}
+.navigation {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 11pt;
+    color: white;
+    text-align: right;
+}
+.navigation a {
+    color: white;
+    text-decoration: none;
+    padding: 0 5px;
+}
+.navigation a:hover {
+    color: #330066;
+}

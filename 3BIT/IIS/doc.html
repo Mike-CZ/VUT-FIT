@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0047)http://www.stud.fit.vutbr.cz/~xkomar27/doc.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+    
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+<style type="text/css"></style></head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>Informační systém - Letiště</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Lukáš Pelánek <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xpelan03@stud.fit.vutbr.cz">xpelan03@stud.fit.vutbr.cz</a> -
+		PHP skripty
+	</dd>
+	<dd>Jiří Komárek <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xkomar27@stud.fit.vutbr.cz">xkomar27@stud.fit.vutbr.cz</a> - 
+		databáze, vzhled
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://letiste.pelanek.eu/">http://letiste.pelanek.eu/</a></dd> <!-- DOPLNIT URL NA VYSLEDNOU APLIKACI -->
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<p>Uveďte prosím existující zástupce <strong>všech rolí uživatelů</strong>.</p>
+<table>
+<tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>technik</td><td>technik</td><td>Technik</td></tr>
+<tr><td>pracovnik</td><td>pracovnik</td><td>Pracovník</td></tr>
+<tr><td>uzivatel</td><td>uzivatel</td><td>Uživatel</td></tr>
+</tbody></table>
+
+<h2>Implementace</h2>
+<p>Celý systém stojí na frameworku Simple MVC Framework. Systém je řízen dvěma hlavními controllery. První controller "app/controllers/admin.php" zajišťuje administrátorskou část systému. Druhý controller "app/controllers/welcome.php" 
+    zajišťuje uživatelskou část. Dále pro práci s uživatelem je vytvořen model "app/models/user.php". Controllery zajišťují zpracování požadavků a dynamicky generují stránky, které jsou uloženy v adresáři "app/views/".
+    Dále jsou v projektu využity helpery, které jsou součástí frameworku. Například pro práci s url a session.</p>
+
+<h2>Instalace</h2>
+<ul>
+<li>Odevzdaný archiv obsahuje složku IIS a databázový skript database.sql.</li>
+<li>Instalace se provede velmi jednoduše tak, že se zkopíruje obsah složky IIS do kořenového adresáře serveru. Dále je nutné vytvořit databázi, spustit databázový skript database.sql pro import dat a tabulek do vytvořené databáze a následně nastavit správný přístup do databáze v souboru app/core/config.php</li>
+<li>Výsledná aplikace vyžaduje PHP5.3+ a MYSQL5.6</li>
+</ul>
+
+<h2>Známé problémy</h2>
+<p>Informační systém nemá žádné známé nedostatky vyplývající ze zadání.</p>
+
+
+
+</body></html>
