@@ -1,0 +1,24 @@
+SIP Klient
+Hodnoceni: 15/15
+Port na kterem klient nasloucha: 5061
+Aplikace splnuje vsechny pozadavky zadani
+
+---info---
+Dotazoval jsem se na foru, ale nedostalo se mi jednoznacne odpovedi.
+Vypis je ve formatu <sekvenční_číslo> <název_požadavku/číslo_a_název_odpovědi> <zdrojová_sip_adresa> <cílová_sip_adresa>.
+Nicmene na foru jsem se dozvedel, ze adresa klienta je vzdy uzivatel@adresa_serveru.
+
+Pokud mi prijde zprava od klienta Bob, a ten posila zpravu na moji skutecnou adresu:
+3 MESSAGE bob@192.168.1.3 alice@192.168.1.2 zprava
+a server, kde je uzivatel zaregistrovan je 192.168.1.1, potom odpoved je:
+3 202 Accepted alice@192.168.1.1 bob@192.168.1.3
+Tuto adresu vypisi pouze na stdout, polozky v hlavicce zustavaji stejne, takze uzivateli Bob se jevi, ze dostal odpoved od spravneho uzivatele.
+
+Snad jsem to spravne pochopil :)
+---------
+
+Spusteni: ./sipklient -p profile.txt [ -m messages.txt]
+
+Odevzdane soubory: Client.cpp, Client.h, Main.cpp, Message.cpp, Message.h, Parameters.cpp, Parameters.h, Makefile, README, manual.pdf
+
+
