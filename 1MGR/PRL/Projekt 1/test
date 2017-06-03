@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Soubor:  es.cpp
+# Datum:   2017/1/4
+# Autor:   Bc. Lukas Pelanek, xpelan03@stud.fit.vutbr.cz
+# Projekt: PRL, Enumeration sort
+# Popis:   Program nacte vstupni soubor s nazvem "numbers", ktery obsahuje neserazenou posloupnost cisel a pomoci paralelniho algoritmu Enumeration sort tuto posloupnost seradi a vypise na stdout.
+
+# testovaci soubor prevzat z ukazky dostupne ve wis
+
+#pokud neni pocet cisel zadan, tak 10
+if [ $# -lt 1 ];then 
+    numbers=10;
+else
+    numbers=$1;
+fi;
+
+#preklad 
+mpic++ --prefix /usr/local/share/OpenMPI -o es es.cpp
+
+#vyrobeni souboru s random cisly
+dd if=/dev/random bs=1 count=$numbers of=numbers &> /dev/null
+
+#spusteni
+mpirun --prefix /usr/local/share/OpenMPI -np $(($numbers + 1)) es
+
+#uklid
+rm -f es numbers
