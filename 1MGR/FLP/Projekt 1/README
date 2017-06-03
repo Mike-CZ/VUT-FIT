@@ -1,0 +1,46 @@
+Soubor:		README
+Datum:		2017/03/06
+Autor:		Bc. Lukas Pelanek, xpelan03@stud.fit.vutbr.cz
+Projekt:	FLP, rka-2-dka
+Popis:		Prevod rozsireneho konecneho automatu na deterministicky konecny automat
+
+--------------------------------------------------------------------------------
+
+Aplikace nejprve nacte vstupni data (ze souboru nebo z stdin) do vnitrni reprezentace.
+Nasledne se provede vypis nacteneho automatu a nebo vypis prislusneho determinisitickeho
+automatu. Samotny proces determinizace probiha ve 3 krocich. V prvnim kroku se automat prevede
+na prislusny automat bez epsilon prechodu. Nasledne je automat bez eps prechodu preveden na
+deterministicky konecny automat a v poslednim kroku dojde k prejmenovani stavu automatu tak,
+aby odpovidalo zadani (<0, 1, 2,..>). Algoritmy byly prevzaty z prednasek k predmetu IFJ.
+
+Spusteni aplikace:
+	./rka-2-dka (-i|-t) [file_path]
+
+	------------------
+	-i = dojde k vypsani nacteneho konecneho automatu do vnitrni reprezentace na stdout
+	-t = dojde k vypsani prislusneho deterministickeho konecneho automatu na stdout
+	file_path = vstupni soubor v pozadovanem formatu, pokud neni zadan cte ze stdin
+
+Format vstupniho souboru:
+	<seznam_vsech_stavu>\n
+	<pocatecni_stav>\n
+	<seznam_koncovych_stavu>\n
+	<pravidlo_1>\n
+	...
+	<pravidlo_N>\n
+
+	------------------
+	seznam_vsech_stavu = seznam nezapornych, celych cisel (0, 1, 2, ...)
+	pocatecni_stav = nezaporne cele cislo, musi patrit do <seznam_vsech_stavu>
+	seznam_koncovych_stavu = seznam nezapornych, celych cisel, podmnozinou <seznam_vsech_stavu>
+	pravidlo_N = prechodove pravidlo, pravidlo pro prechod ze stavu 1 do stavu 2 pomoci symbolu x
+				 by vypadalo nasledovne: 1,x,2. Kde x je male pismeno z [a-z] nebo prazdny retezec.
+
+Referencni vstup:
+	1,2,3
+	1
+	3
+	1,a,3
+	1,b,2
+	2,a,2
+	2,,3
