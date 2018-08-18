@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">List of equipments</ui:define>
+	<ui:define name="content">
+		<h1>List of available equipment</h1>
+		
+		<h:messages layout="table"
+					styleClass="flash flash-info" />
+		
+		<div class="technique-list-add">
+			<i class="fa fa-plus"></i>
+			<h:link outcome="add.xhtml" 
+            	    value="Add" />
+        </div>
+		
+		<h:dataTable value = "#{technique.allAvailableTechnique}" var="technique"
+		   styleClass = "employeeTable"
+		   class="table equipment-list-table">
+		   
+		   <h:column>    				
+		      <f:facet name="header">Id</f:facet>    				
+		      #{technique.evidID}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Serial</f:facet>
+		      #{technique.serialID}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Typ techniky</f:facet>
+		      #{technique.typTechniky.nazev}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Owner</f:facet>
+		      #{technique.majitel.jmeno} #{technique.majitel.prijmeni}
+		   </h:column>
+
+			<h:column>
+		   		<h:link outcome="detail.xhtml?id=#{technique.evidID}" 
+            	    value="Show detail"
+            	    styleClass="detail-btn" />
+           	    <h:link outcome="edit.xhtml?id=#{technique.evidID}" 
+            	    value="Edit"
+            	    styleClass="edit-btn"  />
+           	    <h:link outcome="delete.xhtml?id=#{technique.evidID}" 
+            	    value="Delete"
+            	    styleClass="delete-btn"  />
+		   </h:column>
+		</h:dataTable>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

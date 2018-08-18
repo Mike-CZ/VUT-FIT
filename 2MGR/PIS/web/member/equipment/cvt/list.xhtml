@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../../template.xhtml">
+
+	<ui:define name="content">
+		<ui:define name="title">CVT Overview</ui:define>
+		<h1>CVT</h1>
+		
+		<h:dataTable value = "#{CVTOverview.cvt_rooms}" var="cvtRoom"
+		   styleClass = "employeeTable"
+		   class="table equipment-overview-list-table">
+		   
+		   <h:column>
+		      <f:facet name="header">Name</f:facet>
+		      #{cvtRoom.nazev}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Count of items in the room</f:facet>
+		      #{cvtRoom.evidenceVMistnosti.size()}
+		   </h:column>
+		   
+		   <h:column>
+		   		<h:link outcome="detail.xhtml?id=#{cvtRoom.mistnostID}" 
+            	    value="Show detail"
+            	    styleClass="detail-btn" />
+		   </h:column>
+		</h:dataTable>
+		
+	</ui:define>
+	
+</ui:composition>
+</html>

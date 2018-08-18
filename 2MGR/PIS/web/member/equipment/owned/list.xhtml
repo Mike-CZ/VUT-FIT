@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../../template.xhtml">
+
+	<ui:define name="content">
+		<ui:define name="title">My equipment</ui:define>
+		<h1>List of your equipment</h1>
+		
+		<h:dataTable value = "#{overview.self.vlastnenaTechnika}" var="myEquipment"
+		   styleClass = "employeeTable"
+		   class="table equipment-overview-list-table">
+		   
+		   <h:column>
+		      <f:facet name="header">Name</f:facet>
+			  #{myEquipment.typTechniky.nazev}
+		   </h:column>
+		   <h:column>
+		      <f:facet name="header">Type of equipment</f:facet>
+			  #{myEquipment.typTechniky.typ_zarizeni}
+		   </h:column>
+		    <h:column>
+		   <f:facet name="header">Serial number</f:facet>
+			  #{myEquipment.serialID}
+		   </h:column>
+		 		
+		
+		</h:dataTable>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

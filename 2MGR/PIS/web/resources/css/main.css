@@ -1,0 +1,432 @@
+@CHARSET "UTF-8";
+
+html {
+	box-sizing: border-box;
+}
+
+* {
+	box-sizing: inherit;
+}
+
+body {
+	background: #37474F;
+	color: #2E7D32;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	margin: 0;
+}
+
+/**********************************************************
+ * Header
+ *********************************************************/
+
+.header {
+	background: #0288D1;
+	color: #fff;
+}
+
+.header-container {
+	margin: 0 auto;
+	padding: 20px 0;
+	width: 1140px;
+}
+
+.header-container:after {
+	content: " ";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.header-title {
+	font-size: 2em;
+	font-weight: bold;
+	float: left;
+	width: 50%;
+}
+
+.header-user {
+	float: left;
+	font-size: 1.25em;
+	text-align: right;
+	padding-top: 5px;
+	width: 50%;
+}
+
+.header-user i {
+	margin-right: 5px;
+}
+
+.header-user a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: normal;
+	margin-left: 15px;
+}
+
+.header-user a:hover {
+	color: #f0f0f0;
+}
+
+/**********************************************************
+ * Navbar
+ *********************************************************/
+
+.navbar {
+	background: #db9b00;
+	border-top: 1px solid #006AB0;
+}
+
+.navbar-container {
+	margin: 0 auto;
+	width: 1140px;
+}
+
+.navbar-container:after {
+	content: " ";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+.navbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.navbar li {
+	float: left;
+}
+
+.navbar a {
+	color: #fff;
+	border-top: 3px solid transparent;
+	border-bottom: 3px solid transparent;
+	display: block;
+	padding: 20px;
+	text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar a.active {
+	border-bottom: 3px solid #0D47A1;
+	background: #006AB0;
+}
+
+
+/**********************************************************
+ * Content
+ *********************************************************/
+ 
+.content {
+	background: #fff;
+	border-bottom: 3px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+	margin: 40px auto 10px;
+	min-height: 400px;
+	padding: 40px;
+	width: 1140px;
+}
+
+
+.content h1 {
+	text-align: center;
+	margin: 0 0 .75em;
+}
+
+/**********************************************************
+ *  Footer
+ *********************************************************/
+
+.footer {
+	background: #455A64;
+	border-top: 4px solid #37474F;
+	color: #fff;
+	margin-top: 70px;
+	padding: 40px 0;
+}
+
+.footer-container {
+	margin: 0 auto;
+	width: 1140px;
+}
+
+.footer-container:after {
+   content: " ";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.footer-authors {
+	
+}
+
+.footer-authors-title {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.footer-authors .fa-user,
+.footer-authors .fa-envelope {
+	text-align: center;
+	width: 20px;
+}
+
+.footer-authors ul {
+	float: left;
+	list-style: none;
+	padding: 0 
+}
+
+.footer-authors li {
+	padding: 10px 15px 10px 0;
+	border-bottom: 1px solid #37474F; 
+}
+
+.footer-authors li:last-child {
+	border-bottom: 0;
+}
+
+.footer-author-name {
+	font-size: 1.25em;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+.footer-author-email {
+	font-weight: lighter;
+}
+
+
+/**********************************************************
+ *  Forms
+ *********************************************************/
+
+input[type=text],
+input[type=password],
+select {
+	border: 1px solid #eee;
+	padding: 2px 10px;
+	line-height: 24px;
+	height: 28px;
+	width: 240px;
+	margin: 2px 0 2px 10px;
+}
+
+input[type=text].has-error,
+input[type=password].has-error,
+select.has-error {
+	border-color: #F44336;
+}
+
+input[type=checkbox] {
+	margin: 8px 0 8px 10px;
+}
+
+input[type=submit] {
+	background: #009688;
+	border: 0;
+	color: #fff;
+	cursor: pointer;
+	font-weight: bold;
+	line-height: 24px;
+	margin-left: 10px;
+	padding: 2px 15px;
+}
+
+input[type=submit]:hover {
+	background: #00897B;
+}
+
+.error-message {
+	color: #F44336;
+	margin-left: 10px;
+}
+
+.required:after {
+	content: '*';
+	color: #F44336;
+	margin-left: 4px;
+}
+
+.add-user-info {
+	color: #db9b00;
+	margin: 15px;
+}
+
+
+/**********************************************************
+ *  Login page
+ *********************************************************/
+
+.login input[type=text],
+.login input[type=password] {
+	width: 250px;
+}
+
+.login input[type=submit] {
+	width: 250px;
+}
+
+.login td:first-child {
+	padding-right: 25px;
+}
+
+.login {
+	margin: 0 auto;
+}
+
+.login-error {
+	color: #F44336;
+	margin-top: 15px;
+}
+
+/**********************************************************
+ *  Add User
+ *********************************************************/
+ 
+ .user-add input[type=submit] {
+ 	margin-left: 10px;
+	width: 150px;
+}
+
+/**********************************************************
+ *  Table
+ *********************************************************/
+ 
+ .table {
+ 	border-collapse: collapse;
+ 	width: 100%;
+ }
+ 
+ .table thead {
+ 	background: #757575;
+ 	color: #fff;
+ }
+ 
+ .table td,
+ .table th {
+	border: 1px solid #eee;
+	padding: 12px 10px;
+ 	text-align: left;
+ }
+ 
+ .table th {
+ 	border: 1px solid #666;
+ }
+ 
+ .table tr:nth-child(odd) td {
+ 	background: #fafafa;
+ }
+ 
+ /*********************************************************
+  *  Technique list
+  ********************************************************/
+  
+ .technique-list-add {
+ 	background: #4CAF50;
+	display: inline-block;
+ 	margin: 10px 0;
+ 	padding: 8px 20px; 
+ }
+ 
+ .technique-list-add i {
+ 	color: #fff;
+ 	margin-right: 5px;
+ }
+ 
+ .technique-list-add a {
+ 	color: #fff;
+ 	text-decoration: none;
+ }
+ 
+ 
+ .technique-list-add a:hover {
+ 	text-decoration: underline;
+ }
+ 
+ .detail-btn {
+ 	background: #fff;
+ 	border: 1px solid #eee;
+ 	color: #666;
+ 	margin: 0 2px;
+ 	padding: 4px 10px; 
+ 	text-decoration: none;
+ }
+ 
+.edit-btn {
+ 	background: #2196F3;
+ 	color: #fff;
+ 	margin: 0 2px;
+ 	padding: 4px 10px; 
+ 	text-decoration: none;
+ }
+ 
+ .delete-btn {
+ 	background: #F44336;
+ 	color: #fff;
+ 	margin: 0 2px;
+ 	padding: 4px 10px; 
+ 	text-decoration: none;
+ }
+ 
+ .equipment-list-table td:last-child,
+ .room-list-table td:last-child,
+ .equipment-overview-list-table td:last-child {
+ 	width: 1%;
+ 	white-space: nowrap;
+ }
+ 
+ /*********************************************************
+  * Flashes
+  ********************************************************/
+ 
+ .flash {
+ 	padding: 15px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid transparent;
+    width: 100%;
+ }
+ 
+ .flash-info {
+    color: #1B5E20;
+    background-color: #A5D6A7;
+    border-color: #2E7D32;
+}
+
+
+.user-list-add {
+	background: #4CAF50;
+	display: inline-block;
+ 	margin: 10px 0;
+ 	padding: 8px 20px; 
+ }
+ 
+.user-list-add i {
+ 	color: #fff;
+ 	margin-right: 5px;
+}
+ 
+.user-list-add a {
+	color: #fff;
+ 	text-decoration: none;
+}
+ 
+ 
+ .technique-list-add a:hover {
+ 	text-decoration: underline;
+ }
+ 
+ .fa-check {
+ 	color: #4CAF50;
+ }
+ 
+ .fa-times {
+ 	color: #F44336;
+ }
+ 

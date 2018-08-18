@@ -1,0 +1,34 @@
+$fa-font-path: "../fonts/font-awesome";
+
+@import "variables.scss";
+@import "mixins.scss";
+@import "global.scss";
+@import "utilities.scss";
+@import "navbar/navbar_global.scss";
+@import "navbar/navbar_fixed.scss";
+@import "navbar/navbar_static.scss";
+@import "navbar/navbar_toggle.scss";
+@import "navbar/navbar_colors.scss";
+@import "cards.scss";
+@import "login.scss";
+@import "footer.scss";
+
+// libs
+@import "../../libs/fileuploader/css/jquery.fileuploader.css";
+@import "../../libs/fileuploader/css/jquery.fileuploader-theme-onebutton.css";
+
+// npm libs
+@import "../../../../node_modules/font-awesome/scss/font-awesome.scss";
+@import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css";
+@import "../../../../node_modules/quill/dist/quill.snow.css";
+
+// custom styles
+.label-required:after {
+  content:"\00a0*";
+  color:red;
+}
+.fileuploader {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

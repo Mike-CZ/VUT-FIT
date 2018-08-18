@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+  <title>Evidence výpočetní techniky - <ui:insert name="title"></ui:insert></title>
+  <link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet" />
+  <h:outputStylesheet library="css" name="normalize.css"  />
+  <h:outputStylesheet library="css" name="main.css"  />
+</h:head>
+
+<h:body>
+
+<div class="header">
+	<div class="header-container">
+	    <ui:insert name="header">
+	    	<div class="header-title">
+	    		Evidence výpočetní techniky
+	    	</div>
+	    	
+	    	<c:if test="#{authenticationBean.authorized}">
+	    		<div class="header-user">
+	   				<h:form>
+	   					<i class="fa fa-user" aria-hidden="true"></i>
+	    				#{authenticationBean.login}
+    					<h:commandLink value="Sign out" action="#{authenticationBean.actionLogout}"></h:commandLink>
+    					<i class="fa fa-sign-out" aria-hidden="true"></i>
+	   				</h:form>
+    			</div>
+	    	</c:if>
+	    </ui:insert>
+    </div>
+</div>
+<c:if test="#{authenticationBean.authorized}">
+	<div class="navbar">
+		<div class="navbar-container">
+			<ul>
+				<c:if test="#{authenticationBean.authorized and authenticationBean.admin}">
+					<li>
+						<h:link outcome="/index.xhtml" 
+						        value="Home" 
+						        class="#{view.viewId eq '/index.xhtml' ? 'active' : ''}" />
+					</li>
+				</c:if>
+				<c:if test="#{authenticationBean.authorized and authenticationBean.admin}">
+					<li>
+						<h:link outcome="/admin/user/list.xhtml" 
+						        value="User list" 
+						        class="#{view.viewId.startsWith('/admin/user/') ? 'active' : ''}" />
+					</li>
+					<li>
+						<h:link outcome="/admin/equipment/list.xhtml" 
+						        value="Equipment List" 
+						        class="#{view.viewId.startsWith('/admin/equipment/') ? 'active' : ''}" />
+			        </li>
+			        <li>
+						<h:link outcome="/admin/room/list.xhtml" 
+						        value="Room List" 
+						        class="#{view.viewId.startsWith('/admin/room/') ? 'active' : ''}" />
+			        </li>
+			   
+				</c:if>
+				<c:if test="#{authenticationBean.authorized}">
+					<li>
+						<h:link outcome="/member/equipment/owned/list.xhtml" 
+						        value="My equipment" 
+						        class="#{view.viewId.startsWith('/member/owned/') ? 'active' : ''}" />
+					</li>
+					<li>
+						<h:link outcome="/member/equipment/cvt/list.xhtml" 
+						        value="CVT" 
+						        class="#{view.viewId.startsWith('/member/cvt/') ? 'active' : ''}" />
+			        </li>
+				</c:if>
+				<c:if test="#{not authenticationBean.authorized}">
+					<li><a href="login.xhtml">Login and authentication</a></li>
+				</c:if>
+			</ul>
+		</div>
+	</div>
+</c:if>
+<c:if test="#{not authenticationBean.authorized}">
+	<div class="navbar">
+		<div class="navbar-container">
+			<ul>
+				<li>
+					<h:link outcome="/login.xhtml" 
+					        value="Login" 
+					        class="#{view.viewId eq '/login.xhtml' ? 'active' : ''}" />
+				</li>
+			</ul>
+		</div>
+	</div>
+</c:if>
+
+<div class="content">
+  <ui:insert name="content">
+    	Content area.  See comments below this line in the source.
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+    	<!-- </div> -->
+  </ui:insert>
+</div>
+
+<div class="footer">
+	<div class="footer-container">
+		<ui:insert name="footer">
+			<div class="footer-authors">
+				<div class="footer-authors-title">Authors</div>
+				<ul>
+					<li>
+						<div class="footer-author-name">
+							Radek Pazderka
+						</div>
+						<div class="footer-author-email">
+							xpazde14@stud.fit.vutbr.cz
+						</div>
+					</li>
+					<li>
+						<div class="footer-author-name">
+							Lukáš Pelánek
+						</div>
+						<div class="footer-author-email">
+							xpelan03@stud.fit.vutbr.cz
+						</div>
+					</li>
+
+				</ul>
+			</div>
+
+  		</ui:insert>
+	</div>
+</div>
+
+</h:body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="content">
+	    <h2>You must be logged in to browse this page.</h2>
+		<c:if test="#{not authenticationBean.authorized}">
+			<p><h:link value="Login" outcome="/login.xhtml"/></p>
+		</c:if>
+	</ui:define>
+	
+	<ui:define name="navbar">
+		<ul>
+			<c:if test="#{not authenticationBean.authorized}">
+				<li><h:link value="Login" outcome="/login.xhtml"/></li>
+			</c:if>
+		</ul>
+	</ui:define>
+</ui:composition>
+
+</html>

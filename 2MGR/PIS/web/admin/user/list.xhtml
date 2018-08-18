@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">List of users</ui:define>
+	<ui:define name="content">
+		<h1>List of users</h1>
+		
+		<h:messages layout="table"
+					styleClass="flash flash-info" />
+		<div class="user-list-add">
+			<i class="fa fa-plus"></i>
+			<h:link outcome="add.xhtml" 
+            	    value="Add" />
+        </div>
+		<h:dataTable value = "#{userList.users}" var="user"
+		   styleClass = "employeeTable"
+		   class="table room-list-table">
+		   
+		   <h:column>    				
+		      <f:facet name="header">Id</f:facet>    				
+		      #{user.userID}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Login</f:facet>
+		      #{user.login}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Name</f:facet>
+		      #{user.jmeno}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Surname</f:facet>
+		      #{user.prijmeni}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Admin</f:facet>
+		      <h:panelGroup rendered="#{user.jeAdmin}">
+		      		<i class="fa fa-check" aria-hidden="true"></i>
+		      </h:panelGroup>
+		      <h:panelGroup rendered="#{not user.jeAdmin}">
+		      		<i class="fa fa-times" aria-hidden="true"></i>
+		      </h:panelGroup>
+
+		   </h:column>
+		   
+   
+		   <h:column>
+		   		<h:link outcome="detail.xhtml?id=#{user.userID}" 
+            	    value="Show detail"
+            	    styleClass="detail-btn" />
+           	    <h:link outcome="edit.xhtml?id=#{user.userID}" 
+            	    value="Edit"
+            	    styleClass="edit-btn"  />
+           	    <h:link outcome="delete.xhtml?id=#{user.userID}" 
+            	    value="Delete"
+            	    styleClass="delete-btn"
+            	    rendered="#{empty user.vlastnenaTechnika}"  />
+		   </h:column>
+		</h:dataTable>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

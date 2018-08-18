@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
+	<f:metadata>
+	    <f:viewParam name="id" value="#{roomEdit.id}" required="true" />
+	</f:metadata>
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">Edit room</ui:define>
+	<ui:define name="content">
+		<h1>Edit room</h1>
+
+		<o:form class="user-add" includeRequestParams="true">
+			<h:messages layout="table" globalOnly="true"></h:messages>
+			<h:panelGrid columns="2">
+				<h:outputLabel rendered="true" value="Nazev"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{roomEdit.room.nazev}" required="true"
+						id="name"
+						requiredMessage="Room name is required"
+						validatorMessage="Room name can contain only letter, numbers and dash."
+						styleClass="#{component.valid ? '' : 'has-error'}" >
+						<f:validateRegex pattern="^[a-zA-Z0-9-]*$" />
+					</h:inputText>
+					<h:message for="name" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:panelGroup />
+				<h:commandButton action="#{roomEdit.actionEdit}" value="Edit">
+				</h:commandButton>
+			</h:panelGrid>
+		</o:form>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

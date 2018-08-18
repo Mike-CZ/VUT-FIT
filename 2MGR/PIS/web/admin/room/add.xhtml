@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">Add room</ui:define>
+	<ui:define name="content">
+		<h1>Add room</h1>
+
+		<h:form class="user-add">
+			<h:messages layout="table" globalOnly="true"></h:messages>
+			<h:panelGrid columns="2">
+				<h:outputLabel rendered="true" value="Nazev"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{roomCreate.room.nazev}" required="true"
+						id="name"
+						requiredMessage="Room name is required"
+						validatorMessage="Room name can contain only letter, numbers and dash."
+						styleClass="#{component.valid ? '' : 'has-error'}" >
+						<f:validateRegex pattern="^[a-zA-Z0-9-]*$" />
+					</h:inputText>
+					<h:message for="name" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel rendered="true" value="Is CVT Room"></h:outputLabel>
+					<h:selectBooleanCheckbox  value="#{roomCreate.room.jeCvt}">
+				</h:selectBooleanCheckbox >
+				
+				<h:commandButton action="#{roomCreate.actionInsertNew}" value="Insert">
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

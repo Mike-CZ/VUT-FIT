@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0067)https://www.fit.vutbr.cz/study/courses/PIS/private/cviceni/doc.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+    
+    <title>Projekt PIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<!-- Nahraďte prosím názvem tématu -->
+<h1>Evidence výpočetní techniky</h1>
+
+<!-- Editujte jména a maily autorů a jejich činnost -->
+<dl>
+	<dt>Autoři</dt>
+	<dd>Radek Pazderka 
+	    <a href="mailto:xpazde14@stud.fit.vutbr.cz">xpazde14@stud.fit.vutbr.cz</a> -
+		Backend
+	</dd>
+	<dd>Lukáš Pelánek
+	    <a href="mailto:xpelan03@stud.fit.vutbr.cz">xpelan03@stud.fit.vutbr.cz</a> - 
+		Frontend
+	</dd>
+</dl>
+
+<!-- uživatelské účty -->
+<h2>Uživatelé systému pro testování</h2>
+<table>
+<tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>xpazde14</td><td>xpazde14</td><td>Uživatel</td></tr>
+</tbody></table>
+
+<h2>Postup instalace</h2>
+<ul>
+	<li>IntelliJ IDEA (Jetbrains)</li>
+	<li>Xampp (MySQL db)</li>
+	<li>TomEE</li>
+	<li>MySQL Connector</li>
+	<li>Importovat sql skript pro vytvoření struktury databáze a inicializace počátečních dat</li>
+	<li>Nainstalovat Maven a stáhnout závislosti</li>
+	<li>Nakonfigurovat JPA</li>
+	<li>Nakonfigurovat Web</li>
+	<li>Nakonfigurovat TomEE</li>
+	<li>Vytvořit artefakty</li>
+	<li>Zkompilovat a spustit</li>
+</ul>
+<!-- vyžadované knihovny třetích stran i s verzemi, které byly použity pro testování -->
+<h2>Vyžadované knihovny</h2>
+<ul>
+	<li>JPA</li>
+	<li>org.apache</li>
+	<li>org.hsqldb</li>
+	<li>javax</li>
+	<li>org.hibernate</li>
+	<li>Bootstrap</li>
+</ul>
+
+<h2>Popis systému</h2>
+<p>Systém je zaměřen na evidenci výpočetní techniky. Systém pro každý typ techniky uchovává informace o tom, kdo ji má, kde sedí apod. V případě techniky spadající pod CVT, je uvedena informace, ve které učebně se nachází.</p>
+
+<h2>Implementace</h2>
+<p>Systém je implementován v jazyce Java s použitím výše uvedených závislostí. Systém se skládá primárně ze dvou částí. Frontendu a Backendu. Backend je řešen pomocí controllerů a modelů, které jsou mapovány pomocí ORM na sql tabulky. Controllery se starají o logiku aplikace a zobrazení obsahu uživatele. Pro realizaci frontendu jsme využili knihovnu Bootstrap.</p>
+
+<br/><br/>
+</body></html>

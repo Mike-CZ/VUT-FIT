@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">Edit equipment</ui:define>
+	<ui:define name="content">
+		<h1>Edit equipment</h1>
+
+		<o:form class="user-add" includeRequestParams="true">
+			<h:messages layout="table" globalOnly="true" />
+			<h:panelGrid columns="2">
+				<h:outputLabel styleClass="required" rendered="true" value="SerialId"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{equipmentEdit.equipment.serialID}" required="true"
+						id="serialId"
+						requiredMessage="SerialId is required"
+						validatorMessage="SerialId can contain only letter, numbers and dash."
+						styleClass="#{component.valid ? '' : 'has-error'}">
+						<f:validateRegex pattern="^[a-zA-Z0-9-]*$" />
+					</h:inputText>
+					<h:message for="serialId" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel styleClass="required" rendered="true" value="Type"></h:outputLabel>
+				<h:panelGroup>
+					<h:selectOneMenu value="#{equipmentEdit.defaultEquipType}" converter="omnifaces.SelectItemsConverter"
+						if="type"
+						validatorMessage="Invalid type">
+	    				<f:selectItems value="#{equipmentEdit.equipmentTypes}" var="type" itemLabel="#{type.nazev}" />
+	 				</h:selectOneMenu>				
+					<h:message for="type" errorClass="error-message" />
+				</h:panelGroup>
+
+				<h:outputLabel rendered="true" value="Majitel"></h:outputLabel>
+				<h:selectOneMenu 
+					value="#{equipmentEdit.defaultUser}" 
+					converter="omnifaces.SelectItemsConverter"
+					validatorMessage="Invalid owner">
+
+					<f:selectItem value="#{null}" 
+								  itemLabel="No owner" />
+    				<f:selectItems value="#{equipmentEdit.users}" 
+    							   var="user" 
+    							   itemLabel="#{user.jmeno} #{user.prijmeni}" />
+
+ 				</h:selectOneMenu>
+				
+				<h:panelGroup />
+				<h:commandButton action="#{equipmentEdit.actionEdit}" value="Insert">
+				</h:commandButton>
+			</h:panelGrid>
+		</o:form>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+	
+		<h1>Sign in</h1>
+		<h:form>
+			<h:panelGrid columns="2" class="login">
+				<h:outputLabel rendered="true" value="Login"></h:outputLabel>
+				<h:inputText value="#{authenticationBean.login}" tabindex="0"></h:inputText>
+
+				<h:outputLabel rendered="true" value="Password"></h:outputLabel>
+				<h:inputSecret value="#{authenticationBean.password}"></h:inputSecret>
+
+				<h:panelGroup />
+				<h:commandButton action="#{authenticationBean.actionLogin}" value="Login"></h:commandButton>
+				
+				<h:panelGroup />
+				<h:panelGroup>
+				    <ui:repeat value="#{facesContext.messageList}" var="facesMessage">
+				        <div class="login-error">
+				            <h:outputText value="#{facesMessage.summary}" escape="false" />
+				        </div>
+				    </ui:repeat>
+				</h:panelGroup>
+
+			</h:panelGrid>
+		</h:form>
+	
+	</ui:define>
+</ui:composition>
+</html>

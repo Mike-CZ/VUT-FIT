@@ -1,0 +1,17 @@
+#include <Motif.tmpl>
+#include <Motif.rules>
+
+CC=g++
+CCOPTIONS=-std=c++11 -O -Wall -fno-builtin
+CDEBUGFLAGS=-g
+
+TARGET = draw
+SRCS = window.cpp draw.cpp 
+OBJS = window.o draw.o
+
+LOCAL_LIBRARIES = XmClientLibs
+
+MComplexProgramTarget($(TARGET), $(LOCAL_LIBRARIES), NullParameter)
+
+clean::
+	$(RM) Makefile

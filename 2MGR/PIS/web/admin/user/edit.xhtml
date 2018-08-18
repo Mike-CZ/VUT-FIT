@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+
+    xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">Edit User</ui:define>
+	<ui:define name="content">
+		<h1>Edit user</h1>
+
+		<h:form class="user-add" includeRequestParams="true">
+			<h:messages layout="table" globalOnly="true" />
+			<h:panelGrid columns="2">
+				<h:outputLabel styleClass="required" rendered="true" value="Login"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.login}" required="true"
+						id="login"
+						requiredMessage="Login is required"
+						validatorMessage="Invalid login. At least 6 characters required"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+						<f:validateLength minimum="6" maximum="80" />
+					</h:inputText>
+					<h:message for="login" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel styleClass="required" rendered="true" value="Password"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputSecret value="#{userEdit.thisUser.heslo}" required="true"
+						id="password"
+						requiredMessage="Password is required"
+						validatorMessage="Invalid password. At least five characters required"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+						<f:validateLength minimum="5" maximum="80" />
+					</h:inputSecret>
+					<h:message for="password" errorClass="error-message" />
+				</h:panelGroup>
+			
+	
+				<h:outputLabel styleClass="required" rendered="true" value="Name"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.jmeno}" required="true"
+						id="name"
+						requiredMessage="Name is required"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+					</h:inputText>
+					<h:message for="name" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel styleClass="required" rendered="true" value="Surname"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.prijmeni}" required="true"
+						id="surname"
+						requiredMessage="Surname is required"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+					</h:inputText>
+					<h:message for="surname" errorClass="error-message" />
+				</h:panelGroup>
+
+				<h:outputLabel rendered="true" value="City"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.mesto}" required="false"
+						id="city"
+						requiredMessage="City is required"
+						validatorMessage="Invalid city">
+					</h:inputText>
+					<span class="error-message"><h:message for="city" /></span>
+				</h:panelGroup>
+				
+				<h:outputLabel rendered="true" value="Street"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.ulice}" required="false"
+						id="street"
+						requiredMessage="Street is required"
+						validatorMessage="Invalid street"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+					</h:inputText>
+					<h:message for="street" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel rendered="true" value="House Nr."></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.cislo_domu}" required="false"
+						id="house-number"
+						requiredMessage="House number is required"
+						validatorMessage="Invalid house number"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+					</h:inputText>
+					<h:message for="house-number" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel rendered="true" value="ZipCode"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.psc}" required="false"
+						id="zip-code"
+						requiredMessage="ZipCode is required"
+						validatorMessage="Invalid ZipCode"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+					</h:inputText>
+					<h:message for="zip-code" errorClass="error-message" />
+				</h:panelGroup>
+
+				<h:outputLabel styleClass="required" rendered="true" value="Date of birth"></h:outputLabel>
+				<h:panelGroup>
+					<h:inputText value="#{userEdit.thisUser.rodne_cislo}" required="true"
+						id="birthcode"
+						requiredMessage="Birthcode is required"
+					 	validatorMessage="Expected a birthcode in form of xxxxxx/xxxx"
+					 	styleClass="#{component.valid ? '' : 'has-error'}">
+						<f:validateRegex pattern="^[0-9]{6}/[0-9]{4}$"/>
+					</h:inputText>
+					<h:message for="birthcode" errorClass="error-message" />
+				</h:panelGroup>
+				
+				<h:outputLabel styleClass="required" rendered="true" value="Office"></h:outputLabel>
+				<h:panelGroup>
+					<h:selectOneMenu value="#{userEdit.defaultOffice}" converter="omnifaces.SelectItemsConverter"
+						validatorMessage="Invalid office"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+	    				<f:selectItems value="#{userEdit.offices}" var="office" itemLabel="#{office.nazev}" />
+	 				</h:selectOneMenu>
+ 				</h:panelGroup>				
+				
+				<h:outputLabel rendered="true" value="Is admin"></h:outputLabel>
+				<h:selectBooleanCheckbox  value="#{userEdit.thisUser.jeAdmin}">
+				</h:selectBooleanCheckbox >
+				
+				<h:panelGroup />
+				<h:commandButton action="#{userEdit.actionEdit}" value="Insert">
+				</h:commandButton>
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

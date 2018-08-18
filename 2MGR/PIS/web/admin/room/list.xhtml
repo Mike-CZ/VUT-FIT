@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition template="../../template.xhtml">
+
+	<ui:define name="content">
+		<h1>List of rooms</h1>
+		
+		<h:messages layout="table"
+					styleClass="flash flash-info" />
+		<div class="technique-list-add">
+			<i class="fa fa-plus"></i>
+			<h:link outcome="add.xhtml" 
+            	    value="Add" />
+        </div>
+		<h:dataTable value = "#{roomList.rooms}" var="room"
+		   styleClass = "employeeTable"
+		   class="table room-list-table">
+		   
+		   <h:column>    				
+		      <f:facet name="header">Id</f:facet>    				
+		      #{room.mistnostID}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Nazev</f:facet>
+		      #{room.nazev}
+		   </h:column>
+		   
+		   <h:column>
+		      <f:facet name="header">Is in CVT</f:facet>
+		      <h:panelGroup rendered="#{room.jeCvt}">
+		      		<i class="fa fa-check" aria-hidden="true"></i>
+		      </h:panelGroup>
+		      <h:panelGroup rendered="#{not room.jeCvt}">
+		      		<i class="fa fa-times" aria-hidden="true"></i>
+		      </h:panelGroup>
+		   </h:column>
+		   
+		   <h:column>
+		   		<h:link outcome="detail.xhtml?id=#{room.mistnostID}" 
+            	    value="Show detail"
+            	    styleClass="detail-btn" />
+           	    <h:link outcome="edit.xhtml?id=#{room.mistnostID}" 
+            	    value="Edit"
+            	    styleClass="edit-btn"  />
+           	    <h:link outcome="delete.xhtml?id=#{room.mistnostID}"
+            	    value="Delete"
+            	    styleClass="delete-btn"
+            	    rendered="#{empty room.uzivatele}"  />
+		   </h:column>
+		</h:dataTable>
+
+	</ui:define>
+	
+</ui:composition>
+</html>

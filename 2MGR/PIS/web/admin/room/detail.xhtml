@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
+	<f:metadata>
+	    <f:viewParam name="id" value="#{roomDetail.id}" />
+	</f:metadata>
+<ui:composition template="../../template.xhtml">
+	<ui:define name="title">Room detail</ui:define>
+	<ui:define name="content">
+		<h1>Detail of room ##{roomDetail.room.mistnostID} - #{roomDetail.room.nazev}</h1>
+
+		<h2>Available equipment</h2>
+		<h:messages layout="table"
+					styleClass="flash flash-info" />
+		<h:outputText rendered="#{empty roomDetail.room.evidenceVMistnosti}" 
+		              value="There is no equipment in this room." />
+				
+		<h:dataTable value="#{roomDetail.room.evidenceVMistnosti}" var="equipment"
+		   styleClass = "employeeTable"
+		   class="table"
+		   rendered="#{not empty roomDetail.room.evidenceVMistnosti}">
+		   
+		   <h:column>
+		      <f:facet name="header">Typ zarizeni</f:facet>
+		      #{equipment.typTechniky.typ_zarizeni}
+		   </h:column>
+		   <h:column>
+		      <f:facet name="header">Name</f:facet>
+		      #{equipment.typTechniky.nazev}
+		   </h:column>
+		      <h:column>    				
+		      <f:facet name="header">Serial id</f:facet>    				
+		      #{equipment.serialID}
+		   </h:column>
+		   
+		</h:dataTable>
+		<o:form class="user-add" includeRequestParams="true">
+			<h:messages layout="table" globalOnly="true"></h:messages>
+			<h:panelGrid columns="2">		
+				<h:outputLabel styleClass="required" rendered="true" value="Equipment"></h:outputLabel>
+				<h:panelGroup>
+					<h:selectOneMenu value="#{roomDetail.equipment}" converter="omnifaces.SelectItemsConverter"
+						validatorMessage="Invalid equipment"
+						styleClass="#{component.valid ? '' : 'has-error'}">
+	    				<f:selectItems value="#{roomDetail.equipments}" var="eqip" itemLabel="#{eqip.serialID}" />
+	 				</h:selectOneMenu>
+ 				</h:panelGroup>		
+				
+				<h:commandButton action="#{roomDetail.actionAddEquip}" value="Add equipment">
+				</h:commandButton>
+			</h:panelGrid>
+		</o:form>
+
+	</ui:define>
+	
+</ui:composition>
+</html>
